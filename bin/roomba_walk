@@ -4,11 +4,11 @@ $LOAD_PATH.unshift(lib) if File.directory?(lib) && !$LOAD_PATH.include?(lib)
 
 require 'roomba/roomba'
 
-# Create an roomba engine
+# Create a roomba new engine
 engine = Roomba::Engine.new
-# Set commands reading from STDIN
+# Set commands after reading from STDIN
 engine.set_commands(Roomba::Commands.new(ARGF.readlines))
-# Start roaming using the engine
+# Start roaming using the engine created
 output = Roomba.roam(engine)
 # Output result
 puts output

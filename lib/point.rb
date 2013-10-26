@@ -1,6 +1,12 @@
 # This class represents Point in 2D
+#
+# This class is thought to be generic
+# It does not belong to Roomba module
+#
 class Point
+
   attr_accessor :x, :y
+  
   def initialize(x,y)
     @x, @y = x.to_i, y.to_i
   end
@@ -20,10 +26,9 @@ class Point
     q.add!(p)
   end
 
+  # Allow access using [] array style
   def [](index)
     case index
-    when 0, -2; @x
-    when 1, -1; @y
     when :x, "x"; @x
     when :y, "y"; @y
     else nil

@@ -1,7 +1,11 @@
 require 'point'
 
 # Position class
-# This class has Point and direction
+# 
+# This class has Point and Direction
+# 
+# Default Point is set to ORIGIN(0,0) and Direction is NORTH
+# 
 class Position
 
   DIRECTIONS = {
@@ -15,31 +19,37 @@ class Position
     reset!
   end
   
+  # Reset the position
   def reset!
     @direction = DIRECTIONS[:north]
     @point = Point.new(0,0)
   end
   
+  # Return the Point for next move
   def next_move
     @point.add(next_point)
   end
 
+  # Move the position one unit forward in the direction it is currently facing
   def move!
     @point.add!(next_point)
     self
   end
   
+  # Move the position to Point and change Direction
   def move_to!(p,dict)
     @direction = DIRECTIONS[dict]
     @point = Point.new(p[:x],p[:y])
     self
   end
 
+  # Turn Left
   def left_turn!
     turn(LEFT)
     self
   end
 
+  # Turn Right
   def right_turn!
     turn(RIGHT)
     self
@@ -49,10 +59,12 @@ class Position
     "#{@point},#{face_to}"
   end
   
+  # Return direction symbol
   def direction
     DIRECTIONS.key current_direction
   end
   
+  # Return a copy of Point
   def point
     @point.dup
   end
@@ -76,6 +88,8 @@ class Position
       Point::UNIT_X
     when DIRECTIONS[:west]
       Point::NEGATIVE_UNIT_X
+    else
+      # nothing
     end
   end
 
@@ -93,6 +107,8 @@ class Position
       return :east.upcase
     when DIRECTIONS[:west]
       return :west.upcase
+    else
+      # nothing
     end
   end
 

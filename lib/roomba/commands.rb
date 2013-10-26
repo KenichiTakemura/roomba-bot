@@ -1,11 +1,16 @@
 require 'point'
-
+#
+# Commands class
+# 
 module Roomba
   class Commands
     attr_reader :commands
     
+    # Command syntax reg exp
     COMMAND_SYNTAX = /^(?<com>PLACE)(\s+)(?<x>\d+),(?<y>\d+),(?<dict>NORTH|SOUTH|EAST|WEST)\Z|^(?<com>MOVE)\Z|^(?<com>LEFT)\Z|^(?<com>RIGHT)\Z|^(?<com>REPORT)\Z/
-
+ 
+    # Read lines from the argument.
+    # If no command is given, raise InvalidCommand
     def initialize(lines)
       @commands = Array.new
       s = lines.dup
@@ -13,15 +18,17 @@ module Roomba
         line.strip!
         @commands.push line if validate_command line
       end
+      # If no valid command is given raise Exception
       raise Roomba::Exceptions::InvalidCommand if @commands.empty?
     end
 
-    # Custome Iterator
-    # This yields correcpoding engine command
+    # Custom Iterator
+    # This yields correcpoding engine command with parameter if given
     def each_command(engine_command_list)
       @commands.each do |command|
         COMMAND_SYNTAX =~ command
         if $~[:com].eql?("PLACE")
+          # PLACE command takes parameters
           param = [Point.new($~[:x],$~[:y]),$~[:dict]]
         end
         engine_command = engine_command_list[$~[:com].downcase.intern]
