@@ -4,16 +4,34 @@ roomba-bot
 # Description
 
    This bot roams on the table(5x5) following the given commands
-   Node: This bot does not clean your room!
+   
+   Note: This bot does not clean your room but enjoy!
 
 ## Usage
 
 	Check out this repository
+	There is an executable under bin directory
 	$ git clone ...
 	$ cd roomba-bot/bin
 	$ chmod +x ./roomba_walk
-	
 
+	If you want to give commands from STDIN
+	$ ./roomba_walk
+	(Write your command)
+	...
+	Ctrl-D
+	
+	If you want to use a file, after you create a command file
+	$ cat <path_to_file> | ./roomba_walk
+	
+	There are some command files are provided.  To use them
+	
+	$ cat ../spec/fixtures/sample_commands_1.txt | ./roomba_walk
+	$ cat ../spec/fixtures/sample_commands_2.txt | ./roomba_walk
+	$ cat ../spec/fixtures/sample_commands_3.txt | ./roomba_walk
+	$ cat ../spec/fixtures/sample_commands_4.txt | ./roomba_walk
+	$ cat ../spec/fixtures/sample_commands_5.txt | ./roomba_walk
+	
 ## Test
 
 To run test simply run rspec:
@@ -26,6 +44,6 @@ ruby-2.0.0-p247 [ x86_64 ]
 
 ## Contributing
 
-No Contribution is appreciated
+No Contribution is appreciated.
 
 ==========
