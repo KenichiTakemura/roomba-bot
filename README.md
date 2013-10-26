@@ -1,30 +1,24 @@
 roomba-bot
 ==========
 
-# Roomba-bot
+# Description
 
-   This bot roams on the table following the given commands
+   This bot roams on the table(5x5) following the given commands
    Node: This bot does not clean your room!
-
-## Installation
-
-Add this line to your application's Gemfile:
-
-    gem 'roomba-bot'
-
-And then execute:
-
-    $ bundle
-
-Or install it yourself as:
-
-    $ gem install roomba-bot
 
 ## Usage
 
+	Check out this repository
+	$ git clone ...
+	$ cd roomba-bot/bin
+	$ chmod +x ./roomba_walk
+	
 
 ## Test
 
+To run test simply run rspec:
+
+	$ rspec
 
 ## Ruby
 

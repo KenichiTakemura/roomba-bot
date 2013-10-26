@@ -20,7 +20,7 @@ module Roomba
 
     def on
       # This is a flag that is set to true when PLACE command is invoked
-      @@placed = false
+      @placed = false
       @commands.each_command(COMMAND_SPEC_LIST) do |command,params|
       # Invoke each command with params
         invoke_command(command,params)
@@ -67,14 +67,14 @@ module Roomba
     def invoke_command(command,params)
       case command
       when COMMAND_SPEC_LIST[:move]
-        @@placed && (@position.move! if movable?)
+        @placed && (@position.move! if movable?)
       when COMMAND_SPEC_LIST[:report]
         # Save current position in the list
-        @@placed && @output.push("#{@position}")
+        @placed && @output.push("#{@position}")
       when COMMAND_SPEC_LIST[:left]
-        @@placed && @position.left_turn!
+        @placed && @position.left_turn!
       when COMMAND_SPEC_LIST[:right]
-        @@placed && @position.right_turn!
+        @placed && @position.right_turn!
       when COMMAND_SPEC_LIST[:place]
         p = params[0]
         direction = params[1]
@@ -83,7 +83,7 @@ module Roomba
           to = direction.downcase.intern
           @position.move_to!(p,to)
           # Mark valid PLACE is done 
-          @@placed = true
+          @placed = true
         end
       end
     end
