@@ -4,20 +4,6 @@ require "roomba/commands"
 module Roomba
   class Engine
 
-    # This engine spec is for 5x5 table
-    GRID_X = 5
-    GRID_Y = 5
-
-    # This is a list for this engine supporting commands
-    # Engine supporting command can be different from given command by external
-    COMMAND_SPEC_LIST = {
-      :place => "place",
-      :move => "move",
-      :left => "left",
-      :right => "right",
-      :report => "report"
-    }.freeze
-
     def initialize
       @position = Position.new
       @output = Array.new
@@ -26,6 +12,8 @@ module Roomba
     def set_commands(commands)
       if commands.is_a? Commands
         @commands = commands
+      else
+        raise Roomba::Exceptions::InvalidCommand 
       end
       self
     end
@@ -37,6 +25,7 @@ module Roomba
       # Invoke each command with params
         invoke_command(command,params)
       end
+      self
     end
 
     def off
@@ -47,18 +36,34 @@ module Roomba
     end
 
     private
+    
+    # This is a list for this engine supporting commands
+    # Engine supporting command can be different from given command by external
+    COMMAND_SPEC_LIST = {
+      :place => "place",
+      :move => "move",
+      :left => "left",
+      :right => "right",
+      :report => "report"
+    }.freeze
 
-    # Decide if next step is still on table
+    # This engine spec is for 5x5 table
+    GRID_X = 5
+    GRID_Y = 5
+
+    # Decide if next move is still on table
     def movable?
       # Get predicted next position
       g = @position.next_move
       on_table?(g[:x], g[:y])
     end
 
+    # Return if point is still on table
     def on_table?(x,y)
       (0 <= x && x < GRID_X) && (0 <= y && y < GRID_Y)
     end
 
+    # invoke a command
     def invoke_command(command,params)
       case command
       when COMMAND_SPEC_LIST[:move]
@@ -71,11 +76,12 @@ module Roomba
       when COMMAND_SPEC_LIST[:right]
         @@placed && @position.right_turn!
       when COMMAND_SPEC_LIST[:place]
-        x = params[0].to_i
-        y = params[1].to_i
-        direction = params[2]
-        if on_table?(x,y)
-          @position.move_to!(x,y,direction)
+        p = params[0]
+        direction = params[1]
+        if on_table?(p[:x],p[:y])
+          # Convert string to symbol eg NORTH -> :north
+          to = direction.downcase.intern
+          @position.move_to!(p,to)
           # Mark valid PLACE is done 
           @@placed = true
         end

@@ -1,5 +1,7 @@
 require 'point'
 
+# Position class
+# This class has Point and direction
 class Position
 
   DIRECTIONS = {
@@ -27,11 +29,9 @@ class Position
     self
   end
   
-  def move_to!(x,y,dict)
-    # Convert string to symbol eg NORTH -> :north
-    dict_sym = dict.downcase.intern
-    @direction = DIRECTIONS[dict_sym]
-    @point = Point.new(x.to_i,y.to_i)
+  def move_to!(p,dict)
+    @direction = DIRECTIONS[dict]
+    @point = Point.new(p[:x],p[:y])
     self
   end
 

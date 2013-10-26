@@ -1,3 +1,4 @@
+# This class represents Point in 2D
 class Point
   attr_accessor :x, :y
   def initialize(x,y)
@@ -23,7 +24,7 @@ class Point
     case index
     when 0, -2; @x
     when 1, -1; @y
-    when :x, "x";
+    when :x, "x"; @x
     when :y, "y"; @y
     else nil
     end

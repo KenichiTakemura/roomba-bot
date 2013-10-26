@@ -38,8 +38,8 @@ describe "Position test" do
     q.should eq(Point.new(1,3))
   end
   specify "MOVE TO" do
-    p.move_to!(1,2,:north).point.should eq(Point.new(1,2))
-    p.move_to!(5,5,:north).point.should eq(Point.new(5,5))
-    p.move_to!(-1,-1,:north).point.should eq(Point.new(-1,-1))
+    p.move_to!(Point.new(1,2),:north).point.should eq(Point.new(1,2))
+    p.move_to!(Point.new(5,5),:north).point.should eq(Point.new(5,5))
+    p.move_to!(Point.new(-1,-1),:north).point.should eq(Point.new(-1,-1))
   end
 end
