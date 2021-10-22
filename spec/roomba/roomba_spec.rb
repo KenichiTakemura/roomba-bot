@@ -28,15 +28,18 @@ describe "Roomba" do
 
   it "should test sample data" do
     engine = Roomba::Engine.new
-    Roomba.roam(engine.set_commands(
-    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_1.txt", "r:utf-8").readlines))).should eq(["0,1,NORTH"])
-    Roomba.roam(engine.set_commands(
-    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_2.txt", "r:utf-8").readlines))).should eq(["0,0,WEST"])
-    Roomba.roam(engine.set_commands(
-    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_3.txt", "r:utf-8").readlines))).should eq(["3,3,NORTH"])
-    Roomba.roam(engine.set_commands(
-    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_4.txt", "r:utf-8").readlines))).should eq(["4,4,NORTH"])
-    Roomba.roam(engine.set_commands(
-    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_5.txt", "r:utf-8").readlines))).should eq(["1,1,NORTH"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_1.txt", "r:utf-8").readlines)))).to eq(["0,1,NORTH"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_2.txt", "r:utf-8").readlines)))).to eq(["0,0,WEST"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_3.txt", "r:utf-8").readlines)))).to eq(["3,3,NORTH"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_4.txt", "r:utf-8").readlines)))).to eq(["4,4,NORTH"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/sample_commands_5.txt", "r:utf-8").readlines)))).to eq(["1,1,NORTH"])
+    expect(Roomba.roam(engine.set_commands(
+    Roomba::Commands.new(File.open("spec/fixtures/test_commands.txt", "r:utf-8").readlines)))).to eq(["2,3,WEST"])
+
   end
 end

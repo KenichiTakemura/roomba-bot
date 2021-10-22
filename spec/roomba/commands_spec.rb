@@ -11,7 +11,7 @@ describe "Validate commands" do
   it "should accept all commands" do
     commands = ["PLACE 1,1,NORTH","PLACE 1,1,SOUTH","PLACE 1,1,EAST","PLACE 1,1,WEST","MOVE","LEFT","RIGHT","REPORT"]
     c = Roomba::Commands.new(commands)
-    c.commands.length.should eq(8)
+    expect(c.commands.length).to eq(8)
   end
 
   it "should reject all commands" do
@@ -22,7 +22,7 @@ describe "Validate commands" do
   it "should validate commands" do
     f = File.open("spec/fixtures/test_commands.txt", "r:utf-8")
     c = Roomba::Commands.new(f.readlines)
-    c.commands.length.should eq(15)
+    expect(c.commands.length).to eq(15)
   end
   
   it "should return each command" do

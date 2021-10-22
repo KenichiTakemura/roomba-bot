@@ -9,9 +9,7 @@ roomba-bot
 
 ## Usage
 
-	Check out this repository
 	There is an executable under bin directory
-	$ git clone ...
 	$ cd roomba-bot/bin
 	$ chmod +x ./roomba_walk
 
@@ -20,6 +18,8 @@ roomba-bot
 	(Write your command)
 	...
 	Ctrl-D
+
+	The positions by REPORT are printed after hitting Ctrl-D.
 	
 	If you want to use a file, after you create a command file
 	$ cat <path_to_file> | ./roomba_walk
@@ -40,7 +40,7 @@ To run test simply run rspec:
 
 ## Ruby
 
-ruby-2.0.0-p247 [ x86_64 ]
+ruby-3.0.0 [ x86_64 ]
 
 ## Contributing
 
