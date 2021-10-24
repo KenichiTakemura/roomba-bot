@@ -1,7 +1,7 @@
 # Exception class
 module Roomba
   module Exceptions
-    # No commands is given
+    # Invalid command is given
     class InvalidCommand < StandardError
     end
   end

@@ -1,8 +1,5 @@
 # This class represents Point in 2D
 #
-# This class is thought to be generic
-# It does not belong to Roomba module
-#
 class Point
 
   attr_accessor :x, :y
