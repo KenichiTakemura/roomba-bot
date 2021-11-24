@@ -34,6 +34,7 @@ $ cat ../spec/fixtures/sample_commands_2.txt | ./roomba_walk
 $ cat ../spec/fixtures/sample_commands_3.txt | ./roomba_walk
 $ cat ../spec/fixtures/sample_commands_4.txt | ./roomba_walk
 $ cat ../spec/fixtures/sample_commands_5.txt | ./roomba_walk
+$ cat ../spec/fixtures/sample_commands_6.txt | ./roomba_walk
 ```
 	
 ## Test
