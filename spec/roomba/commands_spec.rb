@@ -1,11 +1,12 @@
 require 'spec_helper'
 require 'roomba/commands'
-require 'roomba/exceptions'
 
 describe "Validate commands" do
 
-  it "should raise InvalidCommand" do
-    expect {Roomba::Commands.new([])}.to raise_exception Roomba::Exceptions::InvalidCommand
+  it "should accept Empty commands" do
+    commands = []
+    c = Roomba::Commands.new(commands)
+    expect(c.commands.length).to eq(0)
   end
   
   it "should accept all commands" do
@@ -16,7 +17,8 @@ describe "Validate commands" do
 
   it "should reject all commands" do
     commands = ["PLACE 1,1,NORTH-EAST","PLACE 1,1,SOUTHWEST","PLACE1,1,EAST","PLACE 1,WEST","1MOVE","LEFT1","1RIGHT1","_REPORT"]
-    expect {Roomba::Commands.new(commands)}.to raise_exception Roomba::Exceptions::InvalidCommand
+    c = Roomba::Commands.new(commands)
+    expect(c.commands.length).to eq(0)
   end
   
   it "should validate commands" do

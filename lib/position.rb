@@ -4,8 +4,6 @@ require 'point'
 # 
 # This class has Point and Direction
 # 
-# Default Point is set to ORIGIN(0,0) and Direction is NORTH
-# 
 class Position
 
   DIRECTIONS = {
@@ -15,15 +13,17 @@ class Position
      :west => 2
    }.freeze
 
-  def initialize
-    reset!
-  end
-  
-  # Reset the position
-  def reset!
+  def initialize(x,y)
+    # Reset the position to (x,y,NORTH)
     @direction = DIRECTIONS[:north]
-    @point = Point.new(0,0)
+    @point = Point.new(x,y)
   end
+
+  def Position.origin(x,y)
+    new(x,y)
+  end
+
+  private_class_method :new
   
   # Return the Point for next move
   def next_move

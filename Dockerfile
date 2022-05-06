@@ -1,5 +1,7 @@
 FROM ruby:2.7-alpine
 WORKDIR /roomba-bot
-COPY Gemfile /roomba-bot/Gemfile
-RUN touch /roomba-bot/Gemfile.lock
+COPY . /roomba-bot/
+RUN gem update --system
 RUN bundle install
+WORKDIR /roomba-bot/bin
+CMD ./roomba_walk

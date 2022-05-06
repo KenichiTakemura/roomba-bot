@@ -7,20 +7,11 @@ This bot roams on the table(5x5) following the given commands
    
 Note: This bot does not clean your room but enjoy!
 
-# Usage
-There is an executable under bin directory
-```
-$ cd roomba-bot/bin
-$ chmod +x ./roomba_walk
-```
+# Instruction
 
-Create a file including commands and run
-```
-$ cat <path_to_command_file>| ./roomba_walk	
-```
 If you want to give commands from STDIN
 ```
-$ ./roomba_walk
+$ docker run -it $(docker build -q .)
 (Write your command)
 ...
 Ctrl-D
@@ -45,7 +36,7 @@ $ rspec
 ```
 ## Ruby
 
-ruby-3.0.0 [ x86_64 ]
+ruby-2.7
 
 ## Report a bug
 

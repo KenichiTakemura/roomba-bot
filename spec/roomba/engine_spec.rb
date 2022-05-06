@@ -1,12 +1,11 @@
 require 'spec_helper'
 require 'roomba/engine'
-require 'roomba/exceptions'
 
 describe "Validate engine" do
+
   engine = Roomba::Engine.new
   specify "set_commands" do
-    expect {engine.set_commands(["PLACE 0,0,NORTH"])}.to raise_exception Roomba::Exceptions::InvalidCommand
-    expect {engine.set_commands(Roomba::Commands.new([]))}.to raise_exception Roomba::Exceptions::InvalidCommand
+    expect {engine.set_commands(Roomba::Commands.new([]))}.not_to raise_exception
     expect {engine.set_commands(Roomba::Commands.new(["PLACE 0,0,NORTH"]))}.not_to raise_exception
   end
 

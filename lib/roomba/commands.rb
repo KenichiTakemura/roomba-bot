@@ -10,7 +10,7 @@ module Roomba
     COMMAND_SYNTAX = /^(?<com>PLACE)(\s+)(?<x>\d+),(?<y>\d+),(?<dict>NORTH|SOUTH|EAST|WEST)\Z|^(?<com>MOVE)\Z|^(?<com>LEFT)\Z|^(?<com>RIGHT)\Z|^(?<com>REPORT)\Z/
  
     # Read lines from the argument.
-    # If no command is given, raise InvalidCommand
+    # TODO: consider streaming instead of buffering to support large inputs
     def initialize(lines)
       @commands = Array.new
       s = lines.dup
@@ -18,8 +18,6 @@ module Roomba
         line.strip!
         @commands.push line if validate_command line
       end
-      # If no valid command is given raise Exception
-      raise Roomba::Exceptions::InvalidCommand if @commands.empty?
     end
 
     # Custom Iterator
