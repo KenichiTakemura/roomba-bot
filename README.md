@@ -9,24 +9,25 @@ Note: This bot does not clean your room but enjoy!
 
 # Instruction
 
-If you want to give commands from STDIN
+
 ```
-$ docker run -it $(docker build -q .)
-(Write your command)
+$ docker build . -t roomba-bot
+$ docker run -it roomba-bot
+```
+
+or 
+```
+docker-compose run roomba
+```
+
+Once you the container started, type your commands and enter Ctrl-D to finish
+
+```
+(Type your command)
 ...
 Ctrl-D
 ```
 **The positions by REPORT are printed after hitting Ctrl-D.**
-	
-There are some command files are provided.  To use them
-```
-$ cat ../spec/fixtures/sample_commands_1.txt | ./roomba_walk
-$ cat ../spec/fixtures/sample_commands_2.txt | ./roomba_walk
-$ cat ../spec/fixtures/sample_commands_3.txt | ./roomba_walk
-$ cat ../spec/fixtures/sample_commands_4.txt | ./roomba_walk
-$ cat ../spec/fixtures/sample_commands_5.txt | ./roomba_walk
-$ cat ../spec/fixtures/sample_commands_6.txt | ./roomba_walk
-```
 	
 ## Test
 

@@ -1,4 +1,4 @@
-FROM ruby:2.7-alpine
+FROM docker.io/ruby:2.7-alpine
 WORKDIR /roomba-bot
 COPY . /roomba-bot/
 RUN gem update --system
